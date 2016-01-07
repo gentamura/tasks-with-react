@@ -1,11 +1,11 @@
 import React from 'react'
 import Marked from 'marked'
 
-export default class Comment extends React.Component {
+export default class Task extends React.Component {
   render() {
     var rawMarkup = Marked(this.props.children.toString(), {sanitize: true});
     return (
-      <li className="comment ui-state-default list-group-item">
+      <li className="task ui-state-default list-group-item">
         <div className="media">
           <div className="media-left">
             <i className="toggle fa fa-check-square-o"></i>

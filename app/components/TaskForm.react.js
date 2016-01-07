@@ -1,13 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-export default class CommentForm extends React.Component {
+export default class TaskForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     var author = ReactDOM.findDOMNode(this.refs.author).value.trim();
     var text   = ReactDOM.findDOMNode(this.refs.text).value.trim();
     if (!text || !author) return;
-    this.props.onCommentSubmit({author: author, text: text});
+    this.props.onTasksSubmit({author: author, text: text});
     ReactDOM.findDOMNode(this.refs.author).value = '';
     ReactDOM.findDOMNode(this.refs.text).value = '';
   }
@@ -15,7 +15,7 @@ export default class CommentForm extends React.Component {
   render() {
     return (
       <div className="add-task">
-        <form className="comment-form" id="addTask" onSubmit={this.handleSubmit.bind(this)}>
+        <form className="tasks-form" onSubmit={this.handleSubmit.bind(this)}>
           <div className="row">
             <div className="col-md-5">
               <div className="form-group">

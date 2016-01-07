@@ -12,20 +12,22 @@ app.use(express.static(path.join(__dirname, 'fonts')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.get('/comments.json', function(req, res) {
-  fs.readFile('comments.json', function(err, data) {
+app.get('/tasks.json', function(req, res) {
+  fs.readFile('tasks.json', function(err, data) {
     res.setHeader('Cache-Control', 'no-cache');
     res.json(JSON.parse(data));
   });
 });
 
-app.post('/comments.json', function(req, res) {
-  fs.readFile('comments.json', function(err, data) {
-    var comments = JSON.parse(data);
-    comments.push(req.body);
-    fs.writeFile('comments.json', JSON.stringify(comments, null, 4), function(err) {
+app.post('/tasks.json', function(req, res) {
+  fs.readFile('tasks.json', function(err, data) {
+    var task = req.body;
+    task.id = new Date().getTime();
+    var tasks = JSON.parse(data);
+    tasks.push(task);
+    fs.writeFile('tasks.json', JSON.stringify(tasks, null, 2), function(err) {
       res.setHeader('Cache-Control', 'no-cache');
-      res.json(comments);
+      res.json(tasks);
     });
   })
 });

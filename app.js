@@ -1,10 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import TaskList from './app/collections/TaskList'
-import CommentBox from './app/components/CommentBox'
+import TaskBox from './app/components/TaskBox.react'
+
+var taskList = new TaskList();
 
 ReactDOM.render(
-  // <CommentBox url="comments.json" pollInterval={2000} />,
-  <CommentBox collection={TaskList} pollInterval={2000} />,
+  <TaskBox collection={taskList} pollInterval={2000} />,
   document.getElementById('yield')
 );

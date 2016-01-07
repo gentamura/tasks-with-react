@@ -5,6 +5,6 @@ export default class TaskList extends Backbone.Collection {
   constructor(options) {
     super(options);
     this.model = Task;
-    this.url   = '/comments.json'
+    this.url   = '/tasks.json'
   }
 }
