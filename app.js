@@ -1,13 +1,13 @@
 import Backbone from 'backbone'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import CommentBox from './components/CommentBox'
+import CommentBox from './app/components/CommentBox'
 import $ from 'jquery'
+import _ from 'underscore'
 
 Backbone.$ = $;
-console.log(Backbone);
 
 ReactDOM.render(
   <CommentBox url="comments.json" pollInterval={2000} />,
-  document.getElementById('container')
+  document.getElementById('yield')
 );

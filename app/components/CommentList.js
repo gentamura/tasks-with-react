@@ -9,9 +9,9 @@ export default class CommentList extends React.Component {
       );
     });
     return (
-      <div className="commentList">
+      <ul className="comment-list list-group" id="jquery-ui-sortable">
         {commentNodes}
-      </div>
+      </ul>
     );
   }
 }

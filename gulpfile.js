@@ -21,9 +21,9 @@ gulp.task('browser-sync', function() {
 });
 
 // JavaScriptへのビルド
-// ES6かつJSXなファイル分をbuild/bundle.jsへ変換する
+// ES6かつJSXなファイルをbuild/bundle.jsへ変換する
 gulp.task('build', function() {
-  browserify({entries: ['./index.js']})
+  browserify({entries: ['./app.js']})
     .transform(babelify)
     .bundle()
     .on('error', errorHandler)
@@ -41,9 +41,10 @@ gulp.task('server', function() {
 // ファイル監視
 // ファイルに更新があったらビルドしてブラウザをリロードする
 gulp.task('watch', function() {
-  gulp.watch('./index.js', ['build']);
+  gulp.watch('./app.js', ['build']);
+  gulp.watch('./server.js', ['build']);
   gulp.watch('./index.html', ['build']);
-  gulp.watch('./components/*.js', ['build']);
+  gulp.watch('./app/components/*.js', ['build']);
 });
 
 // gulpコマンドで起動した時のデフォルトタスク

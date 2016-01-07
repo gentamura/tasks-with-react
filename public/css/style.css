@@ -1,0 +1,105 @@
+body {
+  word-wrap : break-word;
+  overflow-wrap : break-word;
+}
+
+textarea {
+  resize: none;
+}
+
+.yellow {
+  color: #FDEE74;
+}
+.pink {
+  color: #FCB4CC;
+}
+.blue {
+  color: #8EC4E1;
+}
+.green {
+  color: #B9DF86;
+}
+.white {
+  color: #EFEFEF;
+}
+
+.completed {
+  text-decoration: line-through;
+}
+.edit, .update, .cancel {
+  display: none;
+}
+.update {
+  margin-top: 5px;
+}
+.cancel {
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.login-form {
+  margin-top: 60px;
+}
+
+form[role=login] {
+  color: #5d5d5d;
+  background: #f2f2f2;
+  padding: 26px;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+}
+  form[role=login] img {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 35px;
+  }
+  form[role=login] input,
+  form[role=login] button {
+    font-size: 18px;
+    margin: 16px 0;
+  }
+  form[role=login] > div {
+    text-align: center;
+    font-size: 14px;
+  }
+  
+.form-links {
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: 50px;
+}
+  .form-links a {
+    color: #fff;
+  }
+
+
+.add-task {
+  margin-bottom: 10px;
+  padding-bottom: 0;
+}
+
+  .add-task input[type=text] {
+    margin-right: 5px;
+  }
+
+.tasks {
+  clear: both;
+}
+
+.edit_area,
+.media-body .input-group,
+.media-body .input-group .input-group-btn {
+  display: none;
+}
+
+.bootstrap-tagsinput.form-control {
+  padding: 5.4px 12px;
+  line-height: 1.467;
+  color: #34495e;
+  border: 2px solid #bdc3c7;
+  border-radius: 6px;
+  box-shadow: none;
+  -webkit-transition: border .25s linear,color .25s linear,background-color .25s linear;
+  transition: border .25s linear,color .25s linear,background-color .25s linear;
+}

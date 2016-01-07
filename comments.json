@@ -14,5 +14,17 @@
     {
         "author": "hoge",
         "text": "fuga"
+    },
+    {
+        "author": "foobar",
+        "text": "hogehoge"
+    },
+    {
+        "author": "foobar",
+        "text": "hoge"
+    },
+    {
+        "author": "hogehoge",
+        "text": "fugafuga"
     }
 ]
