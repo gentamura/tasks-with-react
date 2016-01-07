@@ -45,6 +45,8 @@ gulp.task('watch', function() {
   gulp.watch('./server.js', ['build']);
   gulp.watch('./index.html', ['build']);
   gulp.watch('./app/components/*.js', ['build']);
+  gulp.watch('./app/models/*.js', ['build']);
+  gulp.watch('./app/collections/*.js', ['build']);
 });
 
 // gulpコマンドで起動した時のデフォルトタスク

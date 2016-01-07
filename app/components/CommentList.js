@@ -3,14 +3,14 @@ import Comment from './Comment'
 
 export default class CommentList extends React.Component {
   render() {
-    var commentNodes = this.props.data.map((comment) => {
+    var taskNodes = this.props.models.map((task) => {
       return (
-        <Comment author={comment.author}>{comment.text}</Comment>
+        <Comment author={task.get('author')}>{task.get('text')}</Comment>
       );
     });
     return (
       <ul className="comment-list list-group" id="jquery-ui-sortable">
-        {commentNodes}
+        {taskNodes}
       </ul>
     );
   }

@@ -7,33 +7,30 @@ export default class CommentBox extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      data: []
+      models: []
     };
   }
 
   loadCommentsFromServer() {
-    $.ajax({
-      url: this.props.url,
-      dataType: 'json',
-      cache: false,
-      success: (data) => { this.setState({data: data}) },
+    var taskList = new this.props.collection();
+    taskList.fetch({
+      success: (models) => {
+        console.log("JSON file load was successful", JSON.stringify(taskList, null, " "));
+        this.setState({models: models})
+      },
       error: (xhr, status, err) => {
         console.error(this.props.url, status, err.toString());
       }
     });
   }
 
-  handleCommentSubmit(comment) {
-    var comments = this.state.data;
-    var newComments = comments.concat([comment]);
-    this.setState({data: newComments});
-    $.ajax({
-      url: this.props.url,
-      dataType: 'json',
-      type: 'POST',
-      data: comment,
-      success: (data) => {
-        this.setState({data: data})
+  handleCommentSubmit(task) {
+    var taskList = new this.props.collection();
+    taskList.create({
+      success: (task) => {
+        var tasks = this.state.models;
+        var newTasks = tasks.concat([task]);
+        this.setState({models: newTasks});
       },
       error: (xhr, status, err) => {
         console.error(this.props.url, status, err.toString());
@@ -50,7 +47,7 @@ export default class CommentBox extends React.Component {
     return (
       <div className="comment-box">
         <CommentForm onCommentSubmit={this.handleCommentSubmit.bind(this)} />
-        <CommentList data={this.state.data}/>
+        <CommentList models={this.state.models}/>
       </div>
     );
   }
