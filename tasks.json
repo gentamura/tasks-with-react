@@ -2,26 +2,22 @@
   {
     "author": "Pete Hunt",
     "text": "This is one comment",
+    "title": "default title",
+    "completed": true,
     "id": 1452146965600
   },
   {
     "author": "Jordan Walke",
     "text": "This is *another* comment",
+    "title": "default title",
+    "completed": true,
     "id": 1452146967774
   },
   {
-    "author": "hoge",
-    "text": "fuga",
-    "id": 1452154372114
-  },
-  {
-    "author": "ff",
+    "author": "foo",
     "text": "bar",
-    "id": 1452154390185
-  },
-  {
-    "author": "g",
-    "text": "e",
-    "id": 1452154435471
+    "title": "",
+    "completed": false,
+    "id": 1452160111348
   }
 ]

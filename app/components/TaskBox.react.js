@@ -1,6 +1,6 @@
 import React from 'react'
-import TasksList from './TasksList.react'
-import TasksForm from './TasksForm.react'
+import TasksList from './TaskList.react'
+import TasksForm from './TaskForm.react'
 import $ from 'jquery'
 
 export default class TaskBox extends React.Component {
@@ -33,6 +33,29 @@ export default class TaskBox extends React.Component {
     taskList.create(task);
   }
 
+  handleToggleClick(task, e) {
+    console.log('task', task);
+    console.log('e', e);
+    // e.preventDefault();
+    task.toggle();
+    var dom = e.currentTarget;
+    if ( task.get('completed') ) {
+      dom.classList.add('fa-check-square-o');
+      dom.classList.remove('fa-square-o');
+    } else {
+      dom.classList.add('fa-square-o');
+      dom.classList.remove('fa-check-square-o');
+    }
+
+    /*
+    var task = e.currentTarget;
+    console.log('task', task);
+    task.toggle();
+    */
+
+    // this.loadTaskssFromServer();
+  }
+
   componentDidMount() {
     this.loadTaskssFromServer();
     setInterval(this.loadTaskssFromServer.bind(this), this.props.pollInterval);
@@ -42,7 +65,7 @@ export default class TaskBox extends React.Component {
     return (
       <div className="tasks-box">
         <TasksForm onTasksSubmit={this.handleTasksSubmit.bind(this)} />
-        <TasksList tasks={this.state.tasks}/>
+        <TasksList tasks={this.state.tasks} onToggleClick={this.handleToggleClick}/>
       </div>
     );
   }
