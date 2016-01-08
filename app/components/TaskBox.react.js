@@ -11,8 +11,8 @@ export default class TaskBox extends React.Component {
     };
   }
 
-  loadTaskssFromServer() {
-    var taskList = this.props.collection;
+  taskListloadTasksFromServer() {
+    var taskList = this.props.taskList;
     taskList.fetch({
       success: (tasks) => {
         this.setState({tasks: tasks})
@@ -24,13 +24,15 @@ export default class TaskBox extends React.Component {
   }
 
   handleTasksSubmit(task) {
-    /*
-    var tasks = this.state.tasks;
-    tasks.add(task);
-    this.setState({tasks: tasks});
-    */
-    var taskList = this.props.collection;
-    taskList.create(task);
+    var taskList = this.props.taskList;
+    taskList.create(task, {
+      success: (tasks) => {
+        this.taskListloadTasksFromServer();
+      },
+      error: (xhr, status, err) => {
+        console.error(this.props.url, status, err.toString());
+      }
+    });
   }
 
   handleToggleClick(task, e) {
@@ -38,6 +40,8 @@ export default class TaskBox extends React.Component {
     console.log('e', e);
     // e.preventDefault();
     task.toggle();
+    this.taskListloadTasksFromServer();
+    /*
     var dom = e.currentTarget;
     if ( task.get('completed') ) {
       dom.classList.add('fa-check-square-o');
@@ -47,25 +51,24 @@ export default class TaskBox extends React.Component {
       dom.classList.remove('fa-check-square-o');
     }
 
-    /*
+
     var task = e.currentTarget;
     console.log('task', task);
     task.toggle();
     */
 
-    // this.loadTaskssFromServer();
+    // this.taskListloadTasksFromServer();
   }
 
   componentDidMount() {
-    this.loadTaskssFromServer();
-    setInterval(this.loadTaskssFromServer.bind(this), this.props.pollInterval);
+    this.taskListloadTasksFromServer();
   }
 
   render() {
     return (
       <div className="tasks-box">
         <TasksForm onTasksSubmit={this.handleTasksSubmit.bind(this)} />
-        <TasksList tasks={this.state.tasks} onToggleClick={this.handleToggleClick}/>
+        <TasksList tasks={this.state.tasks} onToggleClick={this.handleToggleClick.bind(this)}/>
       </div>
     );
   }

@@ -23,6 +23,12 @@ class Media extends React.Component {
   }
 }
 class MediaLeft extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      toggle: this.setClassName()
+    }
+  }
   setClassName() {
     return this.props.task.get('completed') ? 'fa fa-check-square-o' : 'fa fa-square-o';
   }
@@ -31,7 +37,7 @@ class MediaLeft extends React.Component {
     return (
       <div className="media-left">
         <i
-          className={this.setClassName()}
+          className={this.state.toggle}
           onClick={this.props.onToggleClick.bind(null, this.props.task)}
         ></i>
       </div>
