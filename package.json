@@ -21,5 +21,10 @@
     "react-dom": "^0.14.5",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
+  },
+  "dependencies": {
+    "backbone": "^1.2.3",
+    "backbone.localstorage": "^1.1.16",
+    "underscore": "^1.8.3"
   }
 }

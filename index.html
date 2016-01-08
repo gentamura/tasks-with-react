@@ -3,12 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <title>Todo List with React</title>
+  <link rel="stylesheet" href="css/cssreset-min.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/flat-ui-pro.min.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header>
-    <h1>Todo List with React</h1>
-  </header>
-  <div id="container"></div>
+  <div id="container">
+    <div class="row">
+      <div class="col-md-10">
+        <h1>Tasks with React</h1>
+      </div>
+      <div class="col-md-2">
+        <div class="pull-right">Log in / Log out</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        サイドビュー
+      </div>
+      <div class="col-md-10">
+        <div id="yield"></div>
+      </div>
+    </div>
+  </div>
   <script src="build/bundle.js" charset="utf-8"></script>
 </body>
 </html>
