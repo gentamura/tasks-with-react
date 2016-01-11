@@ -1,16 +1,26 @@
 [
   {
-    "author": "Pete Hunt",
-    "text": "This is one comment",
-    "title": "default title",
+    "category": "category A",
+    "content": "This is one comment",
     "completed": false,
     "id": 1452146965600
   },
   {
-    "author": "Jordan Walke",
-    "text": "This is *another* comment",
-    "title": "default title",
+    "category": "default category",
+    "content": "This is two comment",
     "completed": false,
-    "id": 1452146967774
+    "id": 1452495069538
+  },
+  {
+    "category": "default category",
+    "content": "This is three comment",
+    "completed": false,
+    "id": 1452495076905
+  },
+  {
+    "category": "default category",
+    "content": "This is four comment",
+    "completed": false,
+    "id": 1452495084610
   }
 ]

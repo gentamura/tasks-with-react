@@ -1,49 +1,24 @@
 import React from 'react'
-import TasksList from './TaskList.react'
-import TasksForm from './TaskForm.react'
-import $ from 'jquery'
+import TaskList from './TaskList.react'
+import TaskForm from './TaskForm.react'
 
 export default class TaskBox extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      tasks: []
-    };
-  }
-
-  taskListloadTasksFromServer() {
-    var taskList = this.props.taskList;
-    taskList.fetch({
-      success: (tasks) => {
-        this.setState({tasks: tasks})
-      },
-      error: (xhr, status, err) => {
-        console.error(this.props.url, status, err.toString());
-      }
-    });
-  }
-
   handleTasksSubmit(task) {
-    var taskList = this.props.taskList;
-    taskList.create(task, {
+    this.props.tasks.create(task, {
       success: (tasks) => {
-        this.taskListloadTasksFromServer();
+        this.this.props.onLoad();
       },
       error: (xhr, status, err) => {
         console.error(this.props.url, status, err.toString());
       }
     });
   }
-
-  componentDidMount() {
-    this.taskListloadTasksFromServer();
-  }
-
+  
   render() {
     return (
       <div className="tasks-box">
-        <TasksForm onTasksSubmit={this.handleTasksSubmit.bind(this)} />
-        <TasksList tasks={this.state.tasks} onReload={this.taskListloadTasksFromServer.bind(this)} />
+        <TaskForm onTasksSubmit={this.handleTasksSubmit.bind(this)} />
+        <TaskList tasks={this.props.tasks} onReload={this.props.onLoad} />
       </div>
     );
   }

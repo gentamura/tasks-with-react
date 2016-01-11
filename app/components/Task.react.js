@@ -24,7 +24,7 @@ class Media extends React.Component {
     return this.props.task.get('completed') ? 'fa fa-check-square-o' : 'fa fa-square-o';
   }
   getCompletedClassName() {
-    return this.props.task.get('completed') ? 'title completed gray' : 'title';
+    return this.props.task.get('completed') ? 'content completed gray' : 'content';
   }
 
   handleToggleClick(e) {
@@ -43,7 +43,7 @@ class Media extends React.Component {
   }
 
   render() {
-    var rawMarkup = Marked(this.props.task.get('text').toString(), {sanitize: true});
+    var rawMarkup = Marked(this.props.task.get('content').toString(), {sanitize: true});
     return (
       <div className="media">
         <div className="media-left">
@@ -53,11 +53,7 @@ class Media extends React.Component {
           ></i>
         </div>
         <div className="media-body">
-          <span
-            className={this.state.title}>
-            <h6>{this.props.task.get('author')}</h6>
-            <span dangerouslySetInnerHTML={{__html: rawMarkup}} />
-          </span>
+          <span className={this.state.title} dangerouslySetInnerHTML={{__html: rawMarkup}} />
         </div>
         <div className="media-right">
           <i
