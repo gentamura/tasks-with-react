@@ -4,12 +4,12 @@ import ReactDOM from 'react-dom'
 export default class TaskForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
-    var author = ReactDOM.findDOMNode(this.refs.author).value.trim();
-    var text   = ReactDOM.findDOMNode(this.refs.text).value.trim();
+    var author = this.refs.author.value.trim();
+    var text   = this.refs.text.value.trim();
     if (!text || !author) return;
     this.props.onTasksSubmit({author: author, text: text});
-    ReactDOM.findDOMNode(this.refs.author).value = '';
-    ReactDOM.findDOMNode(this.refs.text).value = '';
+    this.refs.author.value = '';
+    this.refs.text.value = '';
   }
 
   render() {

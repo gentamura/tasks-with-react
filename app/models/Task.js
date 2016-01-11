@@ -17,4 +17,8 @@ export default class Task extends Backbone.Model {
       completed: !this.get('completed')
     });
   }
+
+  delete() {
+    this.destroy();
+  }
 }

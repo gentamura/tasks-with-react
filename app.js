@@ -6,6 +6,6 @@ import TaskBox from './app/components/TaskBox.react'
 var taskList = new TaskList();
 
 ReactDOM.render(
-  <TaskBox collection={taskList} pollInterval={2000} />,
+  <TaskBox taskList={taskList} />,
   document.getElementById('yield')
 );
