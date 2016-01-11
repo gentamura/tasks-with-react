@@ -35,31 +35,6 @@ export default class TaskBox extends React.Component {
     });
   }
 
-  handleToggleClick(task, e) {
-    console.log('task', task);
-    console.log('e', e);
-    // e.preventDefault();
-    task.toggle();
-    this.taskListloadTasksFromServer();
-    /*
-    var dom = e.currentTarget;
-    if ( task.get('completed') ) {
-      dom.classList.add('fa-check-square-o');
-      dom.classList.remove('fa-square-o');
-    } else {
-      dom.classList.add('fa-square-o');
-      dom.classList.remove('fa-check-square-o');
-    }
-
-
-    var task = e.currentTarget;
-    console.log('task', task);
-    task.toggle();
-    */
-
-    // this.taskListloadTasksFromServer();
-  }
-
   componentDidMount() {
     this.taskListloadTasksFromServer();
   }
@@ -68,7 +43,7 @@ export default class TaskBox extends React.Component {
     return (
       <div className="tasks-box">
         <TasksForm onTasksSubmit={this.handleTasksSubmit.bind(this)} />
-        <TasksList tasks={this.state.tasks} onToggleClick={this.handleToggleClick.bind(this)}/>
+        <TasksList tasks={this.state.tasks} onReload={this.taskListloadTasksFromServer.bind(this)} />
       </div>
     );
   }

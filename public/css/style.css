@@ -22,6 +22,9 @@ textarea {
 .white {
   color: #EFEFEF;
 }
+.gray {
+  color: #CCCCCC;
+}
 
 .completed {
   text-decoration: line-through;
@@ -63,7 +66,7 @@ form[role=login] {
     text-align: center;
     font-size: 14px;
   }
-  
+
 .form-links {
   text-align: center;
   margin-top: 1em;

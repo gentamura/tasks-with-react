@@ -47,6 +47,19 @@ app.put('/tasks.json/:id', function(req, res) {
   });
 });
 
+app.delete('/tasks.json/:id', function(req, res) {
+  fs.readFile('tasks.json', function(err, data) {
+    var tasks = JSON.parse(data);
+    for (var i = 0; i < tasks.length; i++) {
+      if (tasks[i].id.toString() === req.params.id) tasks.splice(i, 1);
+    }
+    fs.writeFile('tasks.json', JSON.stringify(tasks, null, 2), function(err) {
+      res.setHeader('Cache-Control', 'no-cache');
+      res.json(tasks);
+    });
+  });
+});
+
 app.listen(app.get('port'), function() {
   console.log('Server started: http://localhost:' + app.get('port') + '/');
 });

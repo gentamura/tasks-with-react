@@ -12,19 +12,5 @@
     "title": "default title",
     "completed": false,
     "id": 1452146967774
-  },
-  {
-    "author": "foo",
-    "text": "bar",
-    "title": "deafult title",
-    "completed": true,
-    "id": 1452239635458
-  },
-  {
-    "author": "hoge",
-    "text": "fuga",
-    "title": "deafult title",
-    "completed": false,
-    "id": 1452248408131
   }
 ]
