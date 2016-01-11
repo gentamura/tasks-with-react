@@ -5,7 +5,7 @@ export default class Task extends React.Component {
   render() {
     return (
       <li className="task ui-state-default list-group-item">
-        <Media task={this.props.task} onToggleClick={this.props.onToggleClick} onReload={this.props.onReload}/>
+        <Media task={this.props.task} onToggleClick={this.props.onToggleClick} />
       </li>
     );
   }
@@ -38,7 +38,6 @@ class Media extends React.Component {
   handleDeleteClick(e) {
     if (confirm('Are you sure?')) {
       this.props.task.delete();
-      this.props.onReload();
     }
   }
 

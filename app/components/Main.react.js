@@ -2,20 +2,32 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import TaskBox from './TaskBox.react'
 import CategoryBox from './CategoryBox.react'
+import _ from 'underscore'
 
 export default class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      categories: [],
       tasks: []
     }
   }
 
   handleLoadFromServer() {
+    var categoryList = this.props.categoryList;
+    categoryList.fetch({
+      success: (categories) => {
+        this.setState({categories: categories});
+      }
+    });
+  }
+
+  handleShowTasks(categoryId) {
     var taskList = this.props.taskList;
     taskList.fetch({
       success: (tasks) => {
-        this.setState({tasks: tasks});
+        var _tasks = tasks.filtered({categoryId: categoryId});
+        this.setState({tasks: _tasks});
       },
       error: (xhr, status, err) => {
         console.error(this.props.url, status, err.toString());
@@ -41,12 +53,18 @@ export default class Main extends React.Component {
         <div className="row">
           <div className="col-md-2">
             <aside id="category">
-              <CategoryBox tasks={this.state.tasks} />
+              <CategoryBox
+                categories={this.state.categories}
+                onShowTasks={this.handleShowTasks.bind(this)}
+              />
             </aside>
           </div>
           <div className="col-md-10">
             <div>
-              <TaskBox tasks={this.state.tasks} onLoad={this.handleLoadFromServer.bind(this)} />
+              <TaskBox
+                tasks={this.state.tasks}
+                onShowTasks={this.handleShowTasks.bind(this)}
+              />
             </div>
           </div>
         </div>

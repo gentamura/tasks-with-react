@@ -13,6 +13,13 @@ app.use(express.static(path.join(__dirname, 'fonts')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+app.get('/categories.json', function(req, res) {
+  fs.readFile('categories.json', function(err, data) {
+    res.setHeader('Cache-Control', 'no-cache');
+    res.json(JSON.parse(data));
+  });
+});
+
 app.get('/tasks.json', function(req, res) {
   fs.readFile('tasks.json', function(err, data) {
     res.setHeader('Cache-Control', 'no-cache');
