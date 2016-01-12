@@ -49,6 +49,7 @@ export default class Main extends React.Component {
   mainForceUpdate(e) {
     console.log('mainForceUpdate');
     console.log('this.props.router.current', this.props.router.current);
+    console.log('this.props.router.id', this.props.router.id);
     this.forceUpdate();
   }
 
