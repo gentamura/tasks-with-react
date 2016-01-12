@@ -4,7 +4,7 @@ import TaskForm from './TaskForm.react'
 
 export default class TaskBox extends React.Component {
   handleTasksSubmit(task) {
-    task.categoryId = this.props.tasks.first().get('categoryId');
+    task.categoryId = this.props.router.id;
     this.props.tasks.create(task, {
       success: (tasks) => {
         this.props.onShowTasks(task.categoryId);

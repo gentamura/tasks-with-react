@@ -2,7 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import TaskBox from './TaskBox.react'
 import CategoryBox from './CategoryBox.react'
-import _ from 'underscore'
 
 export default class Main extends React.Component {
   constructor(props) {
@@ -35,6 +34,32 @@ export default class Main extends React.Component {
     });
   }
 
+  handleShowCategories() {
+    var categoryList = this.props.categoryList;
+    categoryList.fetch({
+      success: (categories) => {
+        this.setState({categories: categories});
+      },
+      error: (xhr, status, err) => {
+        console.error(this.props.url, status, err.toString());
+      }
+    });
+  }
+
+  mainForceUpdate(e) {
+    console.log('mainForceUpdate');
+    console.log('this.props.router.current', this.props.router.current);
+    this.forceUpdate();
+  }
+
+  componentWillMount() {
+    this.props.router.on("route", this.mainForceUpdate.bind(this));
+  }
+
+  componentWillUnmount() {
+    this.props.router.off("route", this.mainForceUpdate);
+  }
+
   componentDidMount() {
     this.handleLoadFromServer();
   }
@@ -52,16 +77,16 @@ export default class Main extends React.Component {
         </div>
         <div className="row">
           <div className="col-md-2">
-            <aside id="category">
-              <CategoryBox
-                categories={this.state.categories}
-                onShowTasks={this.handleShowTasks.bind(this)}
-              />
-            </aside>
+            <CategoryBox
+              categories={this.state.categories}
+              onShowTasks={this.handleShowTasks.bind(this)}
+              onShowCategories={this.handleShowCategories.bind(this)}
+            />
           </div>
           <div className="col-md-10">
             <div>
               <TaskBox
+                router={this.props.router}
                 tasks={this.state.tasks}
                 onShowTasks={this.handleShowTasks.bind(this)}
               />

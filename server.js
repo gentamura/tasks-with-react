@@ -20,6 +20,19 @@ app.get('/categories.json', function(req, res) {
   });
 });
 
+app.post('/categories.json', function(req, res) {
+  fs.readFile('categories.json', function(err, data) {
+    var category = req.body;
+    category.id = new Date().getTime();
+    var categories = JSON.parse(data);
+    categories.push(category);
+    fs.writeFile('categories.json', JSON.stringify(categories, null, 2), function(err) {
+      res.setHeader('Cache-Control', 'no-cache');
+      res.json(categories);
+    });
+  })
+});
+
 app.get('/tasks.json', function(req, res) {
   fs.readFile('tasks.json', function(err, data) {
     res.setHeader('Cache-Control', 'no-cache');
