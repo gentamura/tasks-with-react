@@ -8,6 +8,10 @@ export default class TaskList extends Backbone.Collection {
     this.url   = '/tasks.json'
   }
 
+  filtered(obj) {
+    return new this.constructor(this.filter(obj));
+  }
+
   completed() {
     return this.filter(task => task.get('completed'));
   }
