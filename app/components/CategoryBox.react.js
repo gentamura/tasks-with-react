@@ -1,29 +1,27 @@
 import React from 'react'
-import _ from 'underscore'
+import CategoryForm from './CategoryForm.react'
+import CategoryList from './CategoryList.react'
 
 export default class CategoryBox extends React.Component {
-  render() {
-    var taskNodes = this.props.categories.map((category) => {
-      return (
-        <Category category={category} key={category.get('id')} onShowTasks={this.props.onShowTasks} />
-      );
+
+  handleCategoriesSubmit(category) {
+    this.props.categories.create(category, {
+      success: (categories) => {
+        this.props.onShowCategories();
+      },
+      error: (xhr, status, err) => {
+        console.error(this.props.url, status, err.toString());
+      }
     });
-
-    return (
-      <ul>
-        {taskNodes}
-      </ul>
-    );
   }
-}
 
-
-class Category extends React.Component {
   render() {
-    const name = this.props.category.get('name');
-    const id = this.props.category.get('id');
+    var onShowTasks = this.props.onShowTasks;
     return (
-      <li onClick={this.props.onShowTasks.bind(this, id)}>{name}</li>
+      <aside id="category">
+        <CategoryList router={this.props.router} categories={this.props.categories} onShowTasks={onShowTasks} />
+        <CategoryForm onCategoriesSubmit={this.handleCategoriesSubmit.bind(this)}/>
+      </aside>
     );
   }
 }
