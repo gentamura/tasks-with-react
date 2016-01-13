@@ -33,6 +33,23 @@ app.post('/categories.json', function(req, res) {
   })
 });
 
+app.put('/categories.json/:id', function(req, res) {
+  fs.readFile('categories.json', function(err, data) {
+    var category = req.body;
+    var categories = JSON.parse(data);
+    _.find(categories, function(_category){
+      if (_category.id === category.id) {
+        _category.name    = category.name;
+        _category.taskNum = category.taskNum;
+      }
+    });
+    fs.writeFile('categories.json', JSON.stringify(categories, null, 2), function(err) {
+      res.setHeader('Cache-Control', 'no-cache');
+      res.json(categories);
+    });
+  });
+});
+
 app.get('/tasks.json', function(req, res) {
   fs.readFile('tasks.json', function(err, data) {
     res.setHeader('Cache-Control', 'no-cache');
@@ -44,6 +61,7 @@ app.post('/tasks.json', function(req, res) {
   fs.readFile('tasks.json', function(err, data) {
     var task = req.body;
     task.id = new Date().getTime();
+    task.categoryId = parseInt(task.categoryId, 10);
     var tasks = JSON.parse(data);
     tasks.push(task);
     fs.writeFile('tasks.json', JSON.stringify(tasks, null, 2), function(err) {

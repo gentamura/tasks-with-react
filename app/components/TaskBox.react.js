@@ -3,11 +3,11 @@ import TaskList from './TaskList.react'
 import TaskForm from './TaskForm.react'
 
 export default class TaskBox extends React.Component {
-  handleTasksSubmit(task) {
-    task.categoryId = this.props.router.id;
-    this.props.tasks.create(task, {
+  handleTasksSubmit(taskObj) {
+    taskObj.categoryId = this.props.router.current.id;
+    this.props.tasks.create(taskObj, {
       success: (tasks) => {
-        this.props.onShowTasks(task.categoryId);
+        this.props.onShowTasks(taskObj.categoryId);
       },
       error: (xhr, status, err) => {
         console.error(this.props.url, status, err.toString());

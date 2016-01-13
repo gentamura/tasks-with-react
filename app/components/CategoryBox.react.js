@@ -1,4 +1,6 @@
 import React from 'react'
+import CategoryForm from './CategoryForm.react'
+import CategoryList from './CategoryList.react'
 
 export default class CategoryBox extends React.Component {
 
@@ -13,51 +15,13 @@ export default class CategoryBox extends React.Component {
     });
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    var name = this.refs.name.value.trim();
-    if (!name) return;
-    this.handleCategoriesSubmit({name: name});
-    this.refs.name.value = '';
-  }
-
   render() {
-    var taskNodes = this.props.categories.map((category) => {
-      return (
-        <Category category={category} key={category.get('id')} onShowTasks={this.props.onShowTasks} />
-      );
-    });
-
+    var onShowTasks = this.props.onShowTasks;
     return (
       <aside id="category">
-        <form className="category-form" onSubmit={this.handleSubmit.bind(this)}>
-          <div className="row">
-            <div className="col-md-10">
-              <div className="form-group">
-                <input type="text" placeholder="Say somthing..." ref="name" className="form-control" />
-              </div>
-            </div>
-            <div className="col-md-2">
-              <input type="submit" value="Add" className="btn btn-primary btn-block" />
-            </div>
-          </div>
-        </form>
-        <ul>
-          {taskNodes}
-        </ul>
+        <CategoryList router={this.props.router} categories={this.props.categories} onShowTasks={onShowTasks} />
+        <CategoryForm onCategoriesSubmit={this.handleCategoriesSubmit.bind(this)}/>
       </aside>
-    );
-  }
-}
-
-
-class Category extends React.Component {
-  render() {
-    const name = this.props.category.get('name');
-    const id   = this.props.category.get('id');
-    const href = "#category/" + id;
-    return (
-      <li><a href={href} onClick={this.props.onShowTasks.bind(this, id)}>{name}</a></li>
     );
   }
 }

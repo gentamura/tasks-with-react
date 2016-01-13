@@ -1,18 +1,17 @@
 [
   {
     "name": "category A",
+    "taskNum": 5,
     "id": 1453146965611
   },
   {
     "name": "default category",
+    "taskNum": 4,
     "id": 1453495069512
   },
   {
-    "name": "cate b",
-    "id": 1452568848729
-  },
-  {
-    "name": "foobar",
-    "id": 1452596326534
+    "name": "category B",
+    "taskNum": 1,
+    "id": 1452677282791
   }
 ]

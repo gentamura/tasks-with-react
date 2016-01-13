@@ -9,28 +9,31 @@ export default class Router extends Backbone.Router {
       'bar' : 'bar',
       'category/:id' :  'show'
     };
-    this.current = '';
+    this.current = {
+      param: '',
+      id: '',
+    };
     this._bindRoutes();
   }
 
   index() {
     console.log('index');
-    this.current = 'index';
+    this.current.param = 'index';
   }
 
   foo() {
     console.log('foo');
-    this.current = 'foo';
+    this.current.param = 'foo';
   }
 
   bar() {
     console.log('bar');
-    this.current = 'bar';
+    this.current.param = 'bar';
   }
 
   show(id) {
-    this.current = 'show'
-    this.id = id;
+    this.current.param = 'show'
+    this.current.id = id;
   }
 
 }

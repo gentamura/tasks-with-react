@@ -17,6 +17,7 @@ export default class Main extends React.Component {
     categoryList.fetch({
       success: (categories) => {
         this.setState({categories: categories});
+        if (this.props.router.current.id) this.handleShowTasks(this.props.router.current.id);
       }
     });
   }
@@ -25,8 +26,13 @@ export default class Main extends React.Component {
     var taskList = this.props.taskList;
     taskList.fetch({
       success: (tasks) => {
-        var _tasks = tasks.filtered({categoryId: categoryId});
+        var _tasks = tasks.filtered({categoryId: parseInt(categoryId, 10)});
         this.setState({tasks: _tasks});
+
+        var categories = this.state.categories;
+        var category = categories.get(parseInt(categoryId, 10));
+        category.save({'taskNum': _tasks.length})
+        this.setState({categories: categories});
       },
       error: (xhr, status, err) => {
         console.error(this.props.url, status, err.toString());
@@ -47,9 +53,6 @@ export default class Main extends React.Component {
   }
 
   mainForceUpdate(e) {
-    console.log('mainForceUpdate');
-    console.log('this.props.router.current', this.props.router.current);
-    console.log('this.props.router.id', this.props.router.id);
     this.forceUpdate();
   }
 
@@ -70,21 +73,22 @@ export default class Main extends React.Component {
       <div id="container">
         <div className="row">
           <div className="col-md-10">
-            <h1>Tasks with React</h1>
+            <h1><a href="/">Tasks with React</a></h1>
           </div>
           <div className="col-md-2">
             <div className="pull-right">Log in / Log out</div>
           </div>
         </div>
         <div className="row">
-          <div className="col-md-2">
+          <div className="col-md-3">
             <CategoryBox
+              router={this.props.router}
               categories={this.state.categories}
               onShowTasks={this.handleShowTasks.bind(this)}
               onShowCategories={this.handleShowCategories.bind(this)}
             />
           </div>
-          <div className="col-md-10">
+          <div className="col-md-9">
             <div>
               <TaskBox
                 router={this.props.router}
