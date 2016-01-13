@@ -11,7 +11,7 @@ export default class CategoryForm extends React.Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault();
+    if (e) e.preventDefault();
     var name = this.refs.name.value.trim();
     if (!name) return;
     this.props.onCategoriesSubmit({name: name});
@@ -23,34 +23,38 @@ export default class CategoryForm extends React.Component {
     e.preventDefault();
     this.setState({filterClassName: 'dialog-filter'});
     this.setState({dialogClassName: 'dialog dialog-primary'});
-    console.log('document.activeElement', document.activeElement);
-    console.log('handleShowModal:this.refs.name', this.refs.name);
-    this.refs.name.focus();
-    console.log('document.activeElement', document.activeElement);
+    setTimeout(() => this.refs.name.focus(), 300);
   }
 
   handleHideModal() {
+    this.refs.name.value = '';
     this.setState({filterClassName: 'dialog-filter hide'});
     this.setState({dialogClassName: 'dialog dialog-primary hide'});
   }
 
   handleKeyDown(e) {
-    if (e.keyCode === 27) this.handleHideModal();
+    const ENTER_KEY = 13;
+    const ESCAPE_KEY = 27;
+    if (e.keyCode === ENTER_KEY) {
+      this.handleSubmit();
+    } else if (e.keyCode === ESCAPE_KEY) {
+      this.handleHideModal();
+    }
   }
 
   render() {
     return (
       <div>
-        <input type="button" value="Add Category" className="btn btn-primary btn-block" onClick={this.handleShowModal.bind(this)}  onKeyDown={this.handleKeyDown.bind(this)} />
-        <div className={this.state.filterClassName} onClick={this.handleHideModal.bind(this)} />
+        <input type="button" value="Add Category" className="btn btn-primary btn-block" onClick={this.handleShowModal.bind(this)} />
+        <div className={this.state.filterClassName} />
         <div className={this.state.dialogClassName}>
           <div className="container">
             <form className="category-form form-inline" onSubmit={this.handleSubmit.bind(this)}>
               <div className="form-group">
-                <input type="text" placeholder="Category name" ref="name" className="form-control" />
+                <input type="text" placeholder="Category name" ref="name" className="form-control" onKeyDown={this.handleKeyDown.bind(this)} />
               </div>
-              <input type="button" value="close" className="btn btn-defualt" onClick={this.handleHideModal.bind(this)} />
               <input type="submit" value="Add" className="btn btn-primary" />
+              <input type="button" value="close" className="btn btn-defualt" onClick={this.handleHideModal.bind(this)} />
             </form>
           </div>
         </div>

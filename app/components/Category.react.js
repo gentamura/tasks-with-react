@@ -11,8 +11,9 @@ export default class Category extends React.Component {
         <a href={href} onClick={this.props.onShowTasks.bind(this, id)} className={this.props.linkClassName}>
           {name}
           <i className={this.props.editClassName}></i>
-          <span className="pull-right">{this.props.category.get('taskNum')}</span>
         </a>
+        <span className="count pull-right">{this.props.category.get('taskNum')}</span>
+        <div className="clear"></div>
       </li>
     );
   }
