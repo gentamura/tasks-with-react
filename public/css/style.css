@@ -33,6 +33,21 @@ textarea {
 .category-list.active {
   background-color: #eee;
 }
+.category-list {
+  width: 100%;
+  padding-right: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+.category-list.count {
+  color: #eee;
+}
+.clear {
+  clear: both;
+}
+
 .category-edit {
   font-size: 20px;
 }
