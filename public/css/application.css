@@ -1,0 +1,7 @@
+.block {
+  width: 200px;
+  height: 200px; }
+  .block.black {
+    background-color: #333333; }
+  .block.blue {
+    background-color: #52A7DA; }

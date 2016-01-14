@@ -27,6 +27,7 @@
     "backbone.localstorage": "^1.1.16",
     "bootstrap": "^3.3.6",
     "browserify": "^13.0.0",
+    "gulp-sass": "^2.1.1",
     "underscore": "^1.8.3"
   }
 }
