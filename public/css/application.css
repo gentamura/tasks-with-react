@@ -60,3 +60,13 @@
   .category-list .category-edit {
     flex-basis: auto;
     font-size: 20px; }
+
+.tasks-form {
+  display: flex;
+  margin-bottom: 10px; }
+  .tasks-form .tasks-form-text {
+    flex-basis: 80%;
+    margin-right: 10px;
+    margin-bottom: 0px; }
+  .tasks-form .tasks-form-submit {
+    flex-basis: 20%; }

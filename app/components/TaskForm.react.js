@@ -12,20 +12,12 @@ export default class TaskForm extends React.Component {
 
   render() {
     return (
-      <div className="add-task">
-        <form className="tasks-form" onSubmit={this.handleSubmit.bind(this)}>
-          <div className="row">
-            <div className="col-md-10">
-              <div className="form-group">
-                <input type="text" placeholder="Say somthing..." ref="content" className="form-control" />
-              </div>
-            </div>
-            <div className="col-md-2">
-              <input type="submit" value="Add" className="btn btn-primary btn-block" />
-            </div>
-          </div>
-        </form>
-      </div>
+      <form className="tasks-form" onSubmit={this.handleSubmit.bind(this)}>
+        <div className="form-group tasks-form-text">
+          <input type="text" placeholder="Say somthing..." ref="content" className="form-control" />
+        </div>
+        <input type="submit" value="Add" className="btn btn-primary tasks-form-submit" />
+      </form>
     );
   }
 }
