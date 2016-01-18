@@ -1,0 +1,54 @@
+@import settings/variables/0-material-design-color-palette
+@import settings/variables/color
+// @import settings/functions/
+// @import settings/mixins/
+// @import settings/reset
+// @import settings/modules/
+// @import url(//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css)
+// @import url(//fonts.googleapis.com/css?family=Roboto:400,300,400italic,300italic,100italic,100,500,500italic,700,700italic,900,900italic)
+// @import settings/helpers/
+@import components/dialog
+
+.wrapper
+  display: flex
+  flex-flow: row wrap
+
+.wrapper > *
+  padding: 10px
+
+.header
+  flex-basis: 100%
+
+.aside
+  flex-basis: 30%
+
+.main
+  flex-basis: 70%
+
+.footer
+  flex-basis: 100%
+
+.hide
+  display: none
+
+.completed
+  text-decoration: line-through
+
+.category-list
+  display: flex !important
+  justify-content: space-between
+  &.active
+    background-color: #eee
+  .name
+    padding-right: 10px
+    white-space: nowrap
+    overflow: hidden
+    -o-text-overflow: ellipsis
+    text-overflow: ellipsis
+    flex-basis: 90%
+  .count
+    flex-basis: auto
+    margin-right: 10px
+  .category-edit
+    flex-basis: auto
+    font-size: 20px

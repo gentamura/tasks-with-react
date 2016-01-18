@@ -70,34 +70,26 @@ export default class Main extends React.Component {
 
   render() {
     return (
-      <div id="container">
-        <div className="row">
-          <div className="col-md-10">
-            <h1><a href="/">Tasks with React</a></h1>
-          </div>
-          <div className="col-md-2">
-            <div className="pull-right">Log in / Log out</div>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-md-3">
-            <CategoryBox
-              router={this.props.router}
-              categories={this.state.categories}
-              onShowTasks={this.handleShowTasks.bind(this)}
-              onShowCategories={this.handleShowCategories.bind(this)}
-            />
-          </div>
-          <div className="col-md-9">
-            <div>
-              <TaskBox
-                router={this.props.router}
-                tasks={this.state.tasks}
-                onShowTasks={this.handleShowTasks.bind(this)}
-              />
-            </div>
-          </div>
-        </div>
+      <div className="wrapper">
+        <header className="header">
+          <h1><a href="/">Tasks with React</a></h1>
+        </header>
+        <aside className="aside">
+          <CategoryBox
+            router={this.props.router}
+            categories={this.state.categories}
+            onShowTasks={this.handleShowTasks.bind(this)}
+            onShowCategories={this.handleShowCategories.bind(this)}
+          />
+        </aside>
+        <article className="main">
+          <TaskBox
+            router={this.props.router}
+            tasks={this.state.tasks}
+            onShowTasks={this.handleShowTasks.bind(this)}
+          />
+        </article>
+        <footer className="footer">Footer</footer>
       </div>
     );
   }

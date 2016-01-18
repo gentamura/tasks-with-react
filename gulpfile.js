@@ -5,6 +5,7 @@ const buffer = require('vinyl-buffer');
 const gulp = require('gulp');
 const node = require('node-dev');
 const source = require('vinyl-source-stream');
+const sass = require('gulp-sass');
 
 function errorHandler(err) {
   console.log('Error: ' + err.message);
@@ -33,6 +34,14 @@ gulp.task('build', function() {
     .pipe(browserSync.reload({stream: true}));
 });
 
+// Sass設定
+gulp.task('sass', function() {
+  return gulp.src('./public/sass/*.sass')
+      .pipe(sass())
+      .pipe(gulp.dest('./public/css'))
+      .pipe(browserSync.reload({stream: true}));
+});
+
 // ローカルサーバの起動
 gulp.task('server', function() {
   node('./server.js', [], []);
@@ -47,7 +56,9 @@ gulp.task('watch', function() {
   gulp.watch('./app/components/*.js', ['build']);
   gulp.watch('./app/models/*.js', ['build']);
   gulp.watch('./app/collections/*.js', ['build']);
+  gulp.watch('./app/routers/*.js', ['build']);
+  gulp.watch('./public/sass/*.sass', ['sass']);
 });
 
 // gulpコマンドで起動した時のデフォルトタスク
-gulp.task('default', ['server', 'build', 'watch', 'browser-sync']);
+gulp.task('default', ['server', 'build', 'sass', 'watch', 'browser-sync']);

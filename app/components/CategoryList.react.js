@@ -15,10 +15,10 @@ export default class CategoryList extends React.Component {
     return this.props.router.current.id === category.get('id').toString();
   }
   getLinkClassName(category) {
-    return this.isActive(category) ? 'category-list pull-left active' : 'category-list pull-left';
+    return this.isActive(category) ? 'category-list active' : 'category-list';
   }
   getEditClassName(category) {
-    return this.isActive(category) ? 'fa fa-pencil-square-o pull-right category-edit' : 'fa fa-pencil-square-o pull-right category-edit hide';
+    return this.isActive(category) ? 'fa fa-pencil-square-o category-edit' : 'fa fa-pencil-square-o category-edit hide';
   }
 
   render() {
