@@ -36,7 +36,7 @@ gulp.task('build', function() {
 
 // Sass設定
 gulp.task('sass', function() {
-  return gulp.src('./public/sass/*.sass')
+  return gulp.src('./public/sass/*.scss')
       .pipe(sass())
       .pipe(gulp.dest('./public/css'))
       .pipe(browserSync.reload({stream: true}));
@@ -57,7 +57,7 @@ gulp.task('watch', function() {
   gulp.watch('./app/models/*.js', ['build']);
   gulp.watch('./app/collections/*.js', ['build']);
   gulp.watch('./app/routers/*.js', ['build']);
-  gulp.watch('./public/sass/*.sass', ['sass']);
+  gulp.watch('./public/sass/*.scss', ['sass']);
 });
 
 // gulpコマンドで起動した時のデフォルトタスク

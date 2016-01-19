@@ -21,7 +21,7 @@ class Media extends React.Component {
   }
 
   getToggleClassName() {
-    return this.props.task.get('completed') ? 'fa fa-check-square-o' : 'fa fa-square-o';
+    return this.props.task.get('completed') ? 'fui-checkbox-checked' : 'fui-checkbox-unchecked';
   }
   getCompletedClassName() {
     return this.props.task.get('completed') ? 'content completed gray' : 'content';
@@ -46,19 +46,20 @@ class Media extends React.Component {
     return (
       <div className="media">
         <div className="media-left">
-          <i
+          <span
             className={this.state.toggle}
             onClick={this.handleToggleClick.bind(this)}
-          ></i>
+          ></span>
         </div>
         <div className="media-body">
           <span className={this.state.title} dangerouslySetInnerHTML={{__html: rawMarkup}} />
         </div>
         <div className="media-right">
-          <i
-            className="fa fa-trash-o delete"
-            onClick={this.handleDeleteClick.bind(this)}
-          ></i>
+          <span
+            className="fui-trash"
+              onClick={this.handleDeleteClick.bind(this)}
+
+          ></span>
         </div>
       </div>
     );
