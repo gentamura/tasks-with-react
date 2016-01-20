@@ -16,7 +16,7 @@ export default class TaskForm extends React.Component {
         <div className="form-group tasks-form-text">
           <input type="text" placeholder="Say somthing..." ref="content" className="form-control" />
         </div>
-        <input type="submit" value="Add" className="btn btn-primary tasks-form-submit" />
+        <input type="submit" value="Add task" className="btn btn-primary tasks-form-submit hvr-pop" />
       </form>
     );
   }

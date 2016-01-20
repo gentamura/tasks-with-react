@@ -45,7 +45,7 @@ export default class CategoryForm extends React.Component {
   render() {
     return (
       <div>
-        <input type="button" value="Add Category" className="btn btn-primary btn-block" onClick={this.handleShowModal.bind(this)} />
+        <input type="button" value="Add Category" className="btn btn-primary btn-block hvr-pop" onClick={this.handleShowModal.bind(this)} />
         <div className={this.state.filterClassName} />
         <div className={this.state.dialogClassName}>
           <div className="container">

@@ -18,7 +18,7 @@ export default class CategoryList extends React.Component {
     return this.isActive(category) ? 'category-list active' : 'category-list';
   }
   getEditClassName(category) {
-    return this.isActive(category) ? 'fui-new category-edit' : 'fui-new category-edit hide';
+    return this.isActive(category) ? 'fui-new hvr-icon-push category-edit' : 'fui-new hvr-icon-push category-edit hide';
   }
 
   render() {

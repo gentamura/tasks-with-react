@@ -5,7 +5,7 @@ export default class TaskList extends React.Component {
   render() {
     var taskNodes = this.props.tasks.map((task) => {
       return (
-        <Task key={task.get('id')} task={task} onToggleClick={this.props.onToggleClick} />
+        <Task key={task.get('id')} task={task} onToggleClick={this.props.onToggleClick} onShowTasks={this.props.onShowTasks} router={this.props.router} />
       );
     });
     return (

@@ -1,14 +1,19 @@
+@import 'settings/reset';
 @import 'settings/variables/0-material-design-color-palette';
 @import 'settings/variables/1-flat-ui-color-palette';
 @import 'settings/variables/color';
+@import 'settings/modules/hover/hover';
 // @import 'settings/functions/';
 // @import 'settings/mixins/';
-// @import 'settings/reset';
 // @import 'settings/modules/';
+// @import 'settings/helpers/';
 // @import 'url(//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css)';
 // @import 'url(//fonts.googleapis.com/css?family=Roboto:400,300,400italic,300italic,100italic,100,500,500italic,700,700italic,900,900italic)';;
-// @import 'settings/helpers/';
-@import 'components/dialog';
+@import 'atomic/molecules/dialog';
+
+p {
+  margin: 0;
+}
 
 .wrapper {
   display: flex;
@@ -78,5 +83,30 @@
   }
   .tasks-form-submit {
     flex-basis: 20%;
+  }
+}
+
+.task {
+  display: flex;
+  justify-content: space-between;
+  .task-left {
+    flex-basis: 30px;
+  }
+  .task-center {
+    flex-basis: auto;
+    position: absolute;
+    left: 50px;
+  }
+  .task-right {
+    flex-basis: 30px;
+  }
+}
+
+.hvr-icon-push {
+  padding-right: 0;
+  &:before {
+    content: '\e628';
+    font-family: 'Flat-UI-Icons';
+    position: static;
   }
 }

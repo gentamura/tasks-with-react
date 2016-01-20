@@ -72,7 +72,7 @@ export default class Main extends React.Component {
     return (
       <div className="wrapper">
         <header className="header">
-          <h1><a href="/">Tasks with React</a></h1>
+          <h1><a href="/" className="hvr-rotate">Tasks with React</a></h1>
         </header>
         <aside className="aside">
           <CategoryBox

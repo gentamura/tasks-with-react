@@ -19,7 +19,7 @@ export default class TaskBox extends React.Component {
     return (
       <div className="tasks-box">
         <TaskForm onTasksSubmit={this.handleTasksSubmit.bind(this)} />
-        <TaskList tasks={this.props.tasks} />
+        <TaskList tasks={this.props.tasks} onShowTasks={this.props.onShowTasks} router={this.props.router} />
       </div>
     );
   }
