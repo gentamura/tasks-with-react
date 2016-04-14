@@ -19,14 +19,14 @@ export default class TaskForm extends React.Component {
   render() {
     return (
       <div className="form-group">
-        <span className="glyphicon glyphicon-plus" style={{position:'absolute',left:'1.8em',top:'0.64em',color:'lightgray'}}></span>
+        <span className="glyphicon glyphicon-plus" style={{position:'absolute',left:'2.2em',top:'1.2em',color:'lightgray'}}></span>
         <input
           type="text"
           placeholder="Add task by enter..."
           ref="content"
-          className="form-control"
+          className="form-control input-lg"
           onKeyDown={this.handleSubmit.bind(this)}
-          style={{'padding-left':'2em'}}
+          style={{paddingLeft:'2em'}}
         />
       </div>
     );

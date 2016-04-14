@@ -15,7 +15,7 @@ export default class Category extends React.Component {
         <span
           className="glyphicon glyphicon-th-list"
           aria-hidden="true"
-          style={{'margin-right':'0.6em'}}
+          style={{marginRight:'0.6em'}}
         ></span>
         {name}
         <span className="badge pull-right">{this.props.category.get('taskNum')}</span>
