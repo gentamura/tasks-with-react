@@ -15,7 +15,7 @@ export default class CategoryList extends React.Component {
     return this.props.router.current.id === category.get('id').toString();
   }
   getLinkClassName(category) {
-    return this.isActive(category) ? 'category-list active' : 'category-list';
+    return this.isActive(category) ? 'list-group-item active' : 'list-group-item';
   }
   getEditClassName(category) {
     return this.isActive(category) ? 'fui-new hvr-icon-push category-edit' : 'fui-new hvr-icon-push category-edit hide';
@@ -34,8 +34,7 @@ export default class CategoryList extends React.Component {
       );
     });
     return (
-      <ul className="nav nav-list">
-        <li className="nav-header">Category</li>
+      <ul className="list-group">
         {categoryNodes}
       </ul>
     );

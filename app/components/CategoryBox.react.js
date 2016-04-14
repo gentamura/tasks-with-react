@@ -18,10 +18,10 @@ export default class CategoryBox extends React.Component {
   render() {
     var onShowTasks = this.props.onShowTasks;
     return (
-      <aside id="category">
+      <div id="category" className="col-md-3">
         <CategoryList router={this.props.router} categories={this.props.categories} onShowTasks={onShowTasks} />
-        <CategoryForm onCategoriesSubmit={this.handleCategoriesSubmit.bind(this)}/>
-      </aside>
+        <CategoryForm router={this.props.router} onCategoriesSubmit={this.handleCategoriesSubmit.bind(this)}/>
+      </div>
     );
   }
 }

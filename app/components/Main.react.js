@@ -1,7 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import _ from 'underscore'
 import TaskBox from './TaskBox.react'
 import CategoryBox from './CategoryBox.react'
+import Header from './Header.react'
 
 export default class Main extends React.Component {
   constructor(props) {
@@ -17,7 +19,10 @@ export default class Main extends React.Component {
     categoryList.fetch({
       success: (categories) => {
         this.setState({categories: categories});
-        if (this.props.router.current.id) this.handleShowTasks(this.props.router.current.id);
+        
+        if (_.isNumber(this.props.router.current.id)) {
+          this.handleShowTasks(this.props.router.current.id);
+        }
       }
     });
   }
@@ -70,26 +75,23 @@ export default class Main extends React.Component {
 
   render() {
     return (
-      <div className="wrapper">
-        <header className="header">
-          <h1><a href="/" className="hvr-rotate">Tasks with React</a></h1>
-        </header>
-        <aside className="aside">
+      <div className="container">
+        <Header />
+        <div className="row">
           <CategoryBox
             router={this.props.router}
             categories={this.state.categories}
             onShowTasks={this.handleShowTasks.bind(this)}
             onShowCategories={this.handleShowCategories.bind(this)}
           />
-        </aside>
-        <article className="main">
-          <TaskBox
-            router={this.props.router}
-            tasks={this.state.tasks}
-            onShowTasks={this.handleShowTasks.bind(this)}
-          />
-        </article>
-        <footer className="footer">Footer</footer>
+          <article className="main col-md-9">
+            <TaskBox
+              router={this.props.router}
+              tasks={this.state.tasks}
+              onShowTasks={this.handleShowTasks.bind(this)}
+            />
+          </article>
+        </div>
       </div>
     );
   }

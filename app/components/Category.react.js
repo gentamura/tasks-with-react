@@ -7,13 +7,20 @@ export default class Category extends React.Component {
     const id   = this.props.category.get('id');
     const href = "#category/" + id;
     return (
-      <li>
-        <a href={href} onClick={this.props.onShowTasks.bind(this, id)} className={this.props.linkClassName}>
-          <div className="name">{name}</div>
-          <div className="count">{this.props.category.get('taskNum')}</div>
-          <span className={this.props.editClassName}></span>
-        </a>
-      </li>
+      <a
+        href={href}
+        onClick={this.props.onShowTasks.bind(this, id)}
+        className={this.props.linkClassName}
+      >
+        <span
+          className="glyphicon glyphicon-th-list"
+          aria-hidden="true"
+          style={{'margin-right':'0.6em'}}
+        ></span>
+        {name}
+        <span className="badge pull-right">{this.props.category.get('taskNum')}</span>
+        <span className={this.props.editClassName}></span>
+      </a>
     );
   }
 }
