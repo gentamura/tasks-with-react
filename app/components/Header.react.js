@@ -13,7 +13,7 @@ export default class Main extends React.Component {
       <header className="navbar navbar-default">
         <div className="container-fluid">
           <div className="navbar-header">
-            <a className="navbar-brand" href="#">Tasks with React</a>
+            <a className="navbar-brand" href="/">Tasks</a>
           </div>
         </div>
       </header>

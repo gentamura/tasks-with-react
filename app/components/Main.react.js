@@ -19,8 +19,12 @@ export default class Main extends React.Component {
     categoryList.fetch({
       success: (categories) => {
         this.setState({categories: categories});
-        
-        if (_.isNumber(this.props.router.current.id)) {
+        var id; 
+        if (_.isEmpty(window.location.hash)) {
+          id = categories.first().id;
+          this.props.router.navigate("#category/" + id, {trigger: true});
+          this.handleShowTasks(id);
+        } else {
           this.handleShowTasks(this.props.router.current.id);
         }
       }
