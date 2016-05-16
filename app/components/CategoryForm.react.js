@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Button, Modal } from 'react-bootstrap'
+import { Button, Modal, FormGroup, FormControl } from 'react-bootstrap'
 
 export default class CategoryForm extends React.Component {
   constructor(options) {
@@ -11,13 +11,12 @@ export default class CategoryForm extends React.Component {
     this.add   = this.add.bind(this)
     this.open  = this.open.bind(this)
     this.close = this.close.bind(this)
-
-    console.log('this.props.router', this.props.router);
-    console.log('this.props.router.current', this.props.router.current);
-    console.log('this.props.router.current.id', this.props.router.current.id);
   }
 
   add() {
+    var name = this.refs.category_name.value.trim();
+    this.props.onCategoriesSubmit({name: name});
+    this.setState({showModal: false});
   }
 
   open() {
@@ -26,6 +25,7 @@ export default class CategoryForm extends React.Component {
 
   close() {
     this.setState({showModal: false});
+    window.history.back();
   }
 
   render() {
@@ -38,7 +38,12 @@ export default class CategoryForm extends React.Component {
             <Modal.Title>Add Category</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            A body message.
+            <input
+              type="text"
+              placeholder="Category name"
+              ref="category_name"
+              className="form-control"
+            />
           </Modal.Body>
           <Modal.Footer>
             <Button bsStyle="success" onClick={this.add}>Add</Button>

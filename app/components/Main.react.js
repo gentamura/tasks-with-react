@@ -14,24 +14,10 @@ export default class Main extends React.Component {
     }
   }
 
-  handleLoadFromServer() {
-    var categoryList = this.props.categoryList;
-    categoryList.fetch({
-      success: (categories) => {
-        this.setState({categories: categories});
-        var id; 
-        if (_.isEmpty(window.location.hash)) {
-          id = categories.first().id;
-          this.props.router.navigate("#category/" + id, {trigger: true});
-          this.handleShowTasks(id);
-        } else {
-          this.handleShowTasks(this.props.router.current.id);
-        }
-      }
-    });
-  }
-
+  
   handleShowTasks(categoryId) {
+    if (!_.isNumber(categoryId)) return;
+
     var taskList = this.props.taskList;
     taskList.fetch({
       success: (tasks) => {
@@ -74,7 +60,20 @@ export default class Main extends React.Component {
   }
 
   componentDidMount() {
-    this.handleLoadFromServer();
+    var categoryList = this.props.categoryList;
+    categoryList.fetch({
+      success: (categories) => {
+        this.setState({categories: categories});
+        var id; 
+        if (_.isEmpty(window.location.hash)) {
+          id = categories.first().id;
+          this.props.router.navigate("#category/" + id, {trigger: true});
+        } else {
+          id = this.props.router.current.id;
+        }
+        this.handleShowTasks(id);
+      }
+    });
   }
 
   render() {
